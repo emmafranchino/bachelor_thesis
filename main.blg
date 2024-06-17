@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'main.blg'
+[61] biber-darwin:340> INFO - === Mon Jun 17, 2024, 15:52:05
+[76] Biber.pm:419> INFO - Reading 'main.bcf'
+[175] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[188] Biber.pm:4419> INFO - Processing section 0
+[198] Biber.pm:4610> INFO - Looking for bibtex file 'chapters/archive.bib' for section 0
+[201] bibtex.pm:1713> INFO - LaTeX decoding ...
+[266] bibtex.pm:1519> INFO - Found BibTeX data source 'chapters/archive.bib'
+[702] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[703] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[703] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'it-IT'
+[703] Biber.pm:4245> INFO - No sort tailoring available for locale 'it-IT'
+[787] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[837] bbl.pm:763> INFO - Output to main.bbl
+[837] Biber.pm:131> WARN - legacy year field 'ca. 335 a.C.' in entry 'aristotele' is not an integer - this will probably not sort properly.
+[837] Biber.pm:133> INFO - WARNINGS: 1

@@ -1,0 +1,162 @@
+% Tipo di documento. L'uso di twoside implica che i capitoli inizino sempre con la prima pagina a sinistra, eventualmente lasciando una pagina vuota nel capitolo precedente. Se questa cosa è fastidiosa, è possibile rimuoverlo.
+\documentclass[a4paper, twoside, openright]{book}
+
+% Margini
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm, centering]{geometry}
+% head=21.75 pt
+% head=15.75 pt
+
+% Lingua del testo
+\usepackage[italian]{babel}
+% Codifica del testo
+\usepackage[utf8]{inputenc} 
+% Encoding del testo
+\usepackage[T1]{fontenc}
+% Dimensione del font
+\usepackage[fontsize=12pt]{scrextend}
+% Typeface
+% Times New Roman (simile)
+\usepackage{mathptmx}
+% \usepackage{tgtermes}
+% Interlinea
+\linespread{1.5}
+% Uso delle immagini
+\usepackage{graphicx}
+% Posizionamento delle immagini
+\usepackage{float}
+% Ruotare le immagini
+\usepackage{rotating}
+% Formattazione titoli delle sezioni, capitoli etc.
+\usepackage{titlesec}
+% Inserirmento hyperlinks tra i vari elementi del testo 
+\usepackage{hyperref}
+% Introduzione
+\usepackage[nottoc]{tocbibind}
+% Citazioni "in blocco"
+\usepackage{csquotes}
+% Uso dei colori
+\usepackage[dvipsnames]{xcolor}
+% subsubsections appaiono in Index
+\setcounter{tocdepth}{3}
+% subsubsection numerata
+% paragraph non numerato
+\setcounter{secnumdepth}{3}
+% dimensione rientro paragrafo
+\setlength{\parindent}{19pt}
+
+% Bibliografia con biblatex (https://ctan.org/pkg/biblatex?lang=en)
+\usepackage[bibstyle=authoryear, citestyle=apa, dashed=false, backend=biber, block=space, language=italian]{biblatex}
+% Path file delle entries
+\addbibresource{chapters/archive.bib}
+
+% A capo con gli url
+\appto{\bibsetup}{\raggedright}
+% Rimuove In: nella bibliografia
+\renewbibmacro{in:}{}
+% Definisce \urlseen
+\newcommand{\urlseen}[1]{\normalfont{#1}}
+% \urlseen da URL: a In:
+\DeclareFieldFormat{url}{%
+  \iffieldundef{doi}{%
+    \iffieldundef{url}{#1
+    }{%
+      {\urlseen{In:}}\addspace%
+      \href{#1}{\nolinkurl{\thefield{url}}}%
+    }%
+  }{%
+    \href{http://dx.doi.org/\thefield{doi}}{\urlseen{DOI: \thefield{doi}}}%
+  }%
+}
+% Parentesi dopo il link
+\DefineBibliographyStrings{italian} {urlseen = {Consultato il}}
+
+% Modificare l'header delle pagine 
+\usepackage{fancyhdr}
+
+% Librerie matematiche
+\usepackage{amssymb}
+\usepackage{amsmath} % AMS Math Package
+\usepackage{amsthm} % Theorem Formatting
+% Altre librerie utili
+\usepackage{subfig}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{titling}
+
+% ------------------------------------------------------------
+% Stile link
+% Quando usato con hyperref porta all'errore dell'anchor
+% Formato delle intestazioni
+% Inizio all'inizio della pagina
+\titleformat{\chapter}
+{\normalfont\huge\bfseries}{\thechapter.}{0.5em}{\huge}
+% cmd, ls, before s, after s, r
+% \titlespacing*{\chapter}{0pt}{40pt}{30pt}
+\titlespacing*{\chapter}{0pt}{-40pt}{25pt}
+
+% Paragrafi
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{\normalsize}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Stile riferimenti
+% Off per stampa
+% \hypersetup{
+%     colorlinks,
+%    linkcolor=CornflowerBlue,
+%    citecolor=CornflowerBlue
+%}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+    citecolor=black
+}
+
+% Stile header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\rightmark}
+\rhead{\textbf{\thepage}}
+\fancyfoot{}
+% \setlength{\headheight}{12.5pt}
+\setlength{\headheight}{15pt}
+% No numero pagina a inizio capitolo
+\fancypagestyle{plain}{
+  \fancyfoot{}
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+\begin{document}
+\frontmatter 
+
+\input{chapters/frontespizio.tex}
+
+\include{chapters/dedica.tex}
+% \include{chapters/abstract.tex}
+
+\tableofcontents
+
+\input{chapters/introduzione.tex}
+
+\mainmatter
+
+\input{chapters/capitolo1.tex}
+\input{chapters/capitolo2.tex}
+\input{chapters/capitolo3.tex}
+
+\backmatter
+
+\input{chapters/conclusione.tex} 
+
+\nocite{*}
+
+\printbibliography[notkeyword={site}, heading=bibintoc]
+\printbibliography[keyword={site}, title=Sitografia, heading=bibintoc]
+
+\end{document}
+% ----------------------------------------------------------
